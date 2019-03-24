@@ -343,7 +343,7 @@
             // let holidays = this.split_holidays(this.form.holidays)
             // let holidays = this.form.excluding_dates
             let holidays = this.concat_excluding_dates(this.form.excluding_dates, this.form.excluding_terms)
-            console.log('holi', holidays)
+            // console.log('holi', holidays)
             // console.log('holidays', holidays)
             this.is_result_done = true
             this.result.refund_date = this.make_result(holidays, this.form.business_days, this.$moment(this.form.dates[0]).format('MM/DD/YYYY'), this.$moment(this.form.dates[1]).format('MM/DD/YYYY'), this.form.percentage/100)
