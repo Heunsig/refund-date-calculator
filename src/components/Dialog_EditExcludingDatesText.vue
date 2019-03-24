@@ -112,7 +112,6 @@ export default {
     bus.$on('dialog:excluding_dates_text', payload => {
       this.is_active = true
       if (payload.excluding_dates) {
-        console.log('hi')
         this.form.excluding_dates = this.make_string(payload.excluding_dates)  
       }
     })
