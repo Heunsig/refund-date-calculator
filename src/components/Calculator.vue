@@ -343,6 +343,7 @@
             // let holidays = this.split_holidays(this.form.holidays)
             // let holidays = this.form.excluding_dates
             let holidays = this.concat_excluding_dates(this.form.excluding_dates, this.form.excluding_terms)
+            console.log('holi', holidays)
             // console.log('holidays', holidays)
             this.is_result_done = true
             this.result.refund_date = this.make_result(holidays, this.form.business_days, this.$moment(this.form.dates[0]).format('MM/DD/YYYY'), this.$moment(this.form.dates[1]).format('MM/DD/YYYY'), this.form.percentage/100)
@@ -385,13 +386,14 @@
           workingWeekdays: business_days
         })
 
-        let diff = this.$moment(completion_date, 'MM/DD/YYYY').businessDiff(this.$moment(start_date, 'MM/DD/YYYY'), 'days')
-        let a = Math.ceil((diff + 1) * percentage) - 1
+        let diff = this.$moment(completion_date, 'MM/DD/YYYY').businessDiff(this.$moment(start_date, 'MM/DD/YYYY'))
+        if (!holidays.includes(completion_date)) {
+          diff = diff + 1
+        }
 
-        this.result.study_days = diff + 1
-        this.result.refund_days = Math.ceil((diff + 1) * percentage)
-
-        // console.log('test', this.$moment(completion_date, 'MM/DD/YYYY').diff(this.$moment(start_date, 'MM/DD/YYYY'), 'weeks'))
+        let a = Math.ceil((diff) * percentage) - 1
+        this.result.study_days = diff
+        this.result.refund_days = Math.ceil((diff) * percentage)
 
         return this.$moment(start_date, 'MM/DD/YYYY').businessAdd(a).format('MM/DD/YYYY')
       },
