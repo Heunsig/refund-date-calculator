@@ -379,6 +379,7 @@
       //   })
       // },
       make_result (holidays, business_days, start_date, completion_date, percentage) {
+        // console.log('bus', business_days)
         this.store_data_to_localstorage()
         this.$moment.updateLocale('us', {
           holidays: holidays,
@@ -387,9 +388,13 @@
         })
 
         let diff = this.$moment(completion_date, 'MM/DD/YYYY').businessDiff(this.$moment(start_date, 'MM/DD/YYYY'))
-        if (!holidays.includes(completion_date)) {
+        // console.log('diff1', diff)
+        // console.log('bu', business_days)
+        if (!holidays.includes(completion_date) && business_days.includes(this.$moment(completion_date, 'MM/DD/YYYY').day())) {
           diff = diff + 1
         }
+
+        // console.log('diff2', diff)
 
         let a = Math.ceil((diff) * percentage) - 1
         this.result.study_days = diff
