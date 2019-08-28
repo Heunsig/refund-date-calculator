@@ -1,4 +1,4 @@
-# Refund date calculator for Mentor Language Institutte
+# Refund date calculator for Mentor Language Institute
 
 [Go to Refund date calculator](http://refund.catchasoft.com)
 
